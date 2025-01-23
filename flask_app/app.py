@@ -36,8 +36,9 @@ def predict():
     if 'image' not in request.files:
         return jsonify({'error': 'No image uploaded'}), 400
 
-    image = request.files['image']
-    
+    image_file = request.files['image']
+    query_embedding = get_image_embedding(image_file)
+
     result = {
         'style': 'Impressionism',
         'common_artists': ['Monet', 'Renoir'],
