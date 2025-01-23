@@ -9,6 +9,9 @@ from transformers import CLIPProcessor, CLIPModel
 
 app = Flask(__name__)
 
+index_path = "siglip-faiss-wikiart/siglip_10k.index"
+csv_path = "siglip-faiss-wikiart/wikiart_final.csv"
+
 @app.route('/')
 def home():
     return jsonify({"message": "Flask server is running successfully!"})
