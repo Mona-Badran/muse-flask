@@ -45,6 +45,9 @@ def predict():
     
     query_embedding /= np.linalg.norm(query_embedding)
     
+    k = 5
+    distances, indices = index.search(query_embedding, k)
+    
     result = {
         'style': 'Impressionism',
         'common_artists': ['Monet', 'Renoir'],
