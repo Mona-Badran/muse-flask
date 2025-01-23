@@ -48,6 +48,17 @@ def predict():
     k = 5
     distances, indices = index.search(query_embedding, k)
     
+    results = []
+    for idx in indices[0]:
+        artwork_info = {
+            "Artwork": metadata.iloc[idx]['Artwork'],
+            "Artist": metadata.iloc[idx]['Artist'],
+            "Date": metadata.iloc[idx]['Date'],
+            "Style": metadata.iloc[idx]['Style'],
+            "Link": metadata.iloc[idx]['Link'],
+        }
+        results.append(artwork_info)
+    
     result = {
         'style': 'Impressionism',
         'common_artists': ['Monet', 'Renoir'],
