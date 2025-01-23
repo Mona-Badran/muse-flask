@@ -18,6 +18,14 @@ metadata = pd.read_csv(csv_path)
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
 
+def get_image_embedding(image):
+    image = Image.open(image).convert("RGB")
+    inputs = processor(images=image, return_tensors="pt", padding=True)
+    with torch.no_grad():
+        outputs = model.get_image_features(**inputs)
+    embeddings = outputs[0].cpu().numpy()
+    return embeddings
+
 @app.route('/')
 def home():
     return jsonify({"message": "Flask server is running successfully!"})
