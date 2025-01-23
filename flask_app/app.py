@@ -39,6 +39,10 @@ def predict():
     image_file = request.files['image']
     query_embedding = get_image_embedding(image_file)
 
+    query_embedding = np.expand_dims(query_embedding, axis=0)
+    expected_dim = index.d
+    query_embedding = np.pad(query_embedding, ((0, 0), (0, max(0, expected_dim - query_embedding.shape[1]))), mode='constant')
+    
     result = {
         'style': 'Impressionism',
         'common_artists': ['Monet', 'Renoir'],
