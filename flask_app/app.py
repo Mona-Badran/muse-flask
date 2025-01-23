@@ -43,6 +43,8 @@ def predict():
     expected_dim = index.d
     query_embedding = np.pad(query_embedding, ((0, 0), (0, max(0, expected_dim - query_embedding.shape[1]))), mode='constant')
     
+    query_embedding /= np.linalg.norm(query_embedding)
+    
     result = {
         'style': 'Impressionism',
         'common_artists': ['Monet', 'Renoir'],
