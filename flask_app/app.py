@@ -15,6 +15,9 @@ csv_path = "siglip-faiss-wikiart/wikiart_final.csv"
 index = faiss.read_index(index_path)
 metadata = pd.read_csv(csv_path)
 
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+
 @app.route('/')
 def home():
     return jsonify({"message": "Flask server is running successfully!"})
