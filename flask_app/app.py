@@ -59,13 +59,7 @@ def predict():
         }
         results.append(artwork_info)
     
-    result = {
-        'style': 'Impressionism',
-        'common_artists': ['Monet', 'Renoir'],
-        'description': 'A famous art style from the 19th century.'
-    }
-
-    return jsonify(result)
+    return jsonify({"results": results})
 
 if __name__ == '__main__':
     app.run(debug=True)
